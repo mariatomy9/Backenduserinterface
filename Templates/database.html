@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Convert JSON Data to HTML Table</title>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type='button' onclick='tableFromJson()' value='Create Table from JSON data' />
+
+    <div id='showData'>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Customer ID</th>
+                    <th>Service Agent ID</th>
+                    <th>VIP</th>
+                    <th>Location</th>
+                    <th>Department</th>
+                    <th>Language</th>
+                    <th>Age</th>
+                    <th>Complaint</th>
+                    <th>Key Phrase</th>
+                    <th>Customer Sentiments</th>
+                    <th>Agent Sentiments</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+    // scroll down for ES6 features. 
+
+    // using regular methods.
+
+    function tableFromJson() {
+        // the json data. (you can change the values for output.)
+        var table = document.createElement("table");
+        req = $.ajax({
+            url: '/databaseupdate',
+            type: "POST",
+            // success: function (data) {
+            //     console.log(data);
+            //     var myBooks = data;
+            // }
+        });
+
+        req.done(function (data) {
+            console.log('data',data);
+            var myBooks = data;
+            var col = [];
+            for (var i = 0; i < myBooks.length; i++) {
+                for (var key in myBooks[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            console.log('col',col);
+
+            // Create a table.
+            
+            table.className = "styled-table"
+
+            // Create table header row using the extracted headers above.
+            var tr = table.insertRow(-1);                   // table row.
+
+            for (var i = 0; i < col.length; i++) {
+                var th = document.createElement("th");      // table header.
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+
+            // add json data to the table as rows.
+            for (var i = 0; i < myBooks.length; i++) {
+
+                tr = table.insertRow(-1);
+
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = myBooks[i][col[j]];
+                }
+            }
+
+            // Now, add the newly created table with json data, to a container.
+            
+        });
+        var divShowData = document.getElementById('showData');
+            divShowData.innerHTML = "";
+            divShowData.appendChild(table);
+
+
+
+
+        // Extract value from table header. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+
+
+
+
+    }
+</script>
+
+</html>
