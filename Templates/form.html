@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-<link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-<link rel="stylesheet" href="assets/css/iframe-1.css">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+  <link rel="stylesheet" href="assets/css/iframe-1.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
 
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px; 
-}
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 300px;
+    }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-</style>
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
 </head>
-<body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="#"></a> 
-        </div>
-        <div class="col">
-            <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button></div>
-        </div>
-    </nav>
-   
-    <section style="align: center;padding-top: 100px;padding-bottom: 100ppx;">
-        <div class="container text-center" style="text-align: center;">
-    </section>
-        
-<div class="row" align="center" id="row1">
-  <div class="column" style="background-color:#aaa;">
-  </div>
-  <div class="column" style="background-color:#bbb;">
-  </div>
-</div>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-<script src="assets/js/theme.js"></script>
 
+<body>
+  <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+    <div class="container"><a class="navbar-brand logo" href="#"></a>
+    </div>
+    <div class="col">
+      <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" onclick="refreshform()"
+          type="submit"
+          style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button></div>
+    </div>
+  </nav>
+
+  <section style="align: center;padding-top: 100px;padding-bottom: 100ppx;">
+    <div class="container text-center" style="text-align: center;">
+  </section>
+
+  <div class="row" align="center" id="row1">
+    <div class="column" id="raw" style="background-color:#aaa;">
+    </div>
+    <div class="column" id="parsed" style="background-color:#bbb;">
+    </div>
+  </div>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+    function refreshform() {
+      $.ajax({ url: '/formdata', type: "POST", });
+    }
+    req.done(function (data) {
+
+
+
+
+    });
+  </script>
 </body>
+
 </html>
