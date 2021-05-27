@@ -3,6 +3,12 @@
 
 <head>
     <title>Convert JSON Data to HTML Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="assets/css/iframe-1.css">
     <style>
         .styled-table {
             border-collapse: collapse;
@@ -21,6 +27,35 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+ 
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Form</button></div>
+        </div>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Video</button></div>
+        </div>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Database</button></div>
+        </div>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">PowerBI</button></div>
+        </div>
+     
+          <div class="col">
+            </div>
+          <div class="col"> 
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" onclick="tableFromJson()"
+              style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button></div>
+          </div>
+     
+     
+    </nav>
+     
+      <section style="align: center;padding-top: 100px;padding-bottom: 100px;">
+        <div class="container text-center" style="text-align: center;">
+      </section>
+ 
 
     <input type='button' onclick='tableFromJson()' value='Create Table from JSON data' />
 
@@ -46,8 +81,13 @@
     </div>
 
 </body>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
+
     // scroll down for ES6 features. 
 
     // using regular methods.
