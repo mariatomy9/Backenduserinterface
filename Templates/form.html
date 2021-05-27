@@ -46,6 +46,11 @@
       text-align: left;
       width: 500px;
     }
+    pre{
+      font-size:20px;
+      
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -53,16 +58,16 @@
   <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
  
     <div class="col">
-      <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Form</button></div>
+      <div style="padding-left: 21px;padding-top: 29px;"><a href="form"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Form</button></a></div>
     </div>
     <div class="col">
-      <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Video</button></div>
+      <div style="padding-left: 21px;padding-top: 29px;"><a href="video"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Video</button></a></div>
     </div>
     <div class="col">
-      <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Database</button></div>
+      <div style="padding-left: 21px;padding-top: 29px;"><a href="database"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Database</button></a></div>
     </div>
     <div class="col">
-      <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">PowerBI</button></div>
+      <div style="padding-left: 21px;padding-top: 29px;"><a href="powerbi"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">PowerBI</button></a></div>
     </div>
  
       <div class="col">
@@ -81,7 +86,12 @@
   </section>
 
   <div class="row" id="row1">
-    <div class="column" id="raw" style="background-color:#aaa;">
+    <div class="column" id="raw" style="background-color:#aaa;overflow: scroll;">
+      <p id="par">
+        
+        <pre id="json"></pre>
+
+      </p>
     </div>
     <div class="column" id="showData" style="background-color:#bbb;padding-top: 100px;">
       <table border="5" style="width:30%" class="table">
@@ -154,13 +164,23 @@
       var myBooks = data;
       for (var key in myBooks) {
         console.log('data', key);
-        var tr = table.insertRow(-1);                   // table row.
-        var th = document.createElement("th");      // table header.
-        th.innerHTML = key;
-        tr.appendChild(th);
-        var tabCell = tr.insertCell(-1);
-        tabCell.innerHTML =   myBooks[key];
-      }
+        if (key==="raw_data") 
+            {
+              console.log('data',key);
+             var divShowData1 = document.getElementById('raw');
+             console.log(myBooks[key])
+             document.getElementById("json").innerHTML = JSON.stringify(myBooks[key],null,'\t');
+            }
+            else
+            {
+            var tr = table.insertRow(-1);                   // table row.
+            var th = document.createElement("th");      // table header.
+            th.innerHTML = key;
+            tr.appendChild(th);
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = myBooks[key];
+            }
+          }
     });
 
 
