@@ -6,12 +6,13 @@ app = Flask(__name__, static_folder="assets", template_folder="Templates")
 def parsed_form():
     pass
 def isjson_available():
-    if path.exists("data.json"):
+    file="data.json"
+    if path.exists(file):
         with open('data.json') as f:
             data = json.load(f)
-        json_formatted_str = json.dumps(data, indent=2)
-        print(json_formatted_str)   
-        return json_formatted_str
+        # json_formatted_str = json.dumps(data, indent=2)
+        # print(json_formatted_str)   
+        return data
     else:
         return 
 @app.route("/")
