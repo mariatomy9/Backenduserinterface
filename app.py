@@ -68,6 +68,27 @@ def databasedata():
     "Cu_Sentiments": "8",
     "AG_Sentiments": "9",}])
 
+@app.route("/video")
+def database():
+    return render_template("video.html")
+
+@app.route("/videodata",methods=['POST'])
+def databasedata():
+    raw_data = isjson_available()
+    
+    return jsonify([{"CustomerID" : "CD701",
+    "Service Agent ID": "AG10002",
+    "VIP": "Y",
+    "Location": "Dubai",
+    "Department": "Health",
+    "Language": "English",
+    "Gender": "M",
+    "Age": "35",
+    "Complaint": "N",
+    "Key Phrase": "affordable,heartfelt,happiness",
+    "Cu_Sentiments": "8",
+    "AG_Sentiments": "9",}])
+
 
 # def 
 # dictionary ={ 
