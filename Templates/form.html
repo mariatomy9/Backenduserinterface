@@ -18,7 +18,7 @@
       float: left;
       width: 50%;
       padding: 10px;
-      height:600px;
+      height: 600px;
     }
 
     .row:after {
@@ -26,13 +26,25 @@
       display: table;
       clear: both;
     }
-     table, th, td {
-     border: 1px solid black;
-     border-collapse: collapse;
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      table-layout: fixed;
     }
-    th, td {
-     padding: 5px;
-     text-align: left;
+
+    th {
+      width: 200px;
+      padding: 5px;
+      text-align: left;
+    }
+
+    td {
+      padding: 5px;
+      text-align: left;
+      width: 500px;
     }
   </style>
 </head>
@@ -45,7 +57,7 @@
     <div class="col">
       <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" onclick="tableFromJson()"
           style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button></div>
-      
+
 
     </div>
   </nav>
@@ -57,46 +69,46 @@
   <div class="row" id="row1">
     <div class="column" id="raw" style="background-color:#aaa;">
     </div>
-    <div class="column" id="showData" style="background-color:#bbb;">
+    <div class="column" id="showData" style="background-color:#bbb;padding-top: 100px;">
       <table border="5" style="width:30%" class="table">
         <tr>
-          <th>Additional Feedback:</th>
+          <th>Additional Feedback</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Age:</th>
+          <th>Age</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>AgentID:</th>
+          <th>AgentID</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>CName:</th>
+          <th>CName</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Complaint:</th>
+          <th>Complaint</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Date:</th>
+          <th>Date</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Feedback:</th>
+          <th>Feedback</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Gender:</th>
+          <th>Gender</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>Location:</th>
+          <th>Location</th>
           <td>-</td>
         </tr>
         <tr>
-          <th>TID:</th>
+          <th>TID</th>
           <td>-</td>
         </tr>
       </table>
@@ -113,7 +125,8 @@
     // myBooks={"key":"1","efghsf":"shfgjy"}
     // the json data. (you can change the values for output.)
     var table = document.createElement("table");
-    table.className = "styled-table"
+    table.className = "table";
+
     req = $.ajax({
       url: '/formdata',
       type: "POST",
@@ -129,10 +142,10 @@
         console.log('data', key);
         var tr = table.insertRow(-1);                   // table row.
         var th = document.createElement("th");      // table header.
-        th.innerHTML = key ;
+        th.innerHTML = key;
         tr.appendChild(th);
         var tabCell = tr.insertCell(-1);
-        tabCell.innerHTML =  ' : '+myBooks[key];
+        tabCell.innerHTML =   myBooks[key];
       }
     });
 
