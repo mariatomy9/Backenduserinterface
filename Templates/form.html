@@ -79,10 +79,10 @@
         console.log('data', key);
         var tr = table.insertRow(-1);                   // table row.
         var th = document.createElement("th");      // table header.
-        th.innerHTML = key;
+        th.innerHTML = key ;
         tr.appendChild(th);
         var tabCell = tr.insertCell(-1);
-        tabCell.innerHTML = myBooks[key];
+        tabCell.innerHTML =  ' : '+myBooks[key];
       }
     });
 

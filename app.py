@@ -6,11 +6,12 @@ app = Flask(__name__, static_folder="assets", template_folder="Templates")
 def parsed_form():
     pass
 def isjson_available():
-    if path.exists("form.json"):
+    if path.exists("data.json"):
         with open('data.json') as f:
             data = json.load(f)
-            
-        return data
+        json_formatted_str = json.dumps(data, indent=2)
+        print(json_formatted_str)   
+        return json_formatted_str
     else:
         return 
 @app.route("/")
@@ -69,14 +70,15 @@ def databasedata():
     "AG_Sentiments": "9",}])
 
 @app.route("/video")
-def database():
+def video():
     return render_template("video.html")
 
 @app.route("/videodata",methods=['POST'])
-def databasedata():
+def videodata():
     raw_data = isjson_available()
     
-    return jsonify([{"CustomerID" : "CD701",
+    return jsonify({"raw_data":raw_data,
+        "CustomerID" : "CD701",
     "Service Agent ID": "AG10002",
     "VIP": "Y",
     "Location": "Dubai",
@@ -87,9 +89,11 @@ def databasedata():
     "Complaint": "N",
     "Key Phrase": "affordable,heartfelt,happiness",
     "Cu_Sentiments": "8",
-    "AG_Sentiments": "9",}])
+    "AG_Sentiments": "9",})
 
-
+@app.route("/powerbi")
+def powerbi():
+    return render_template("powerbi.html")
 # def 
 # dictionary ={ 
 #     "name" : "sathiyajith", 
