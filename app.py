@@ -173,7 +173,7 @@ def azure():
 
     print(Average(person1))
     print(Average(person2))
-    video_insights={"Customer Sentiments":Average(person1),"Customer Sentiments":Average(person2),"Language":"English","keywords":l3}
+    video_insights={"Customer Sentiments":Average(person1),"Agent Sentiments":Average(person2),"Language":"English","keywords":l3}
     jsondumper("videoInsights", video_insights)
     # ----------------------FORM RECOGNISER-----------------------------
 
@@ -189,109 +189,109 @@ def azure():
     jsondumper("form", output)
 
     # # ----------------------DATABASE------------------------------------
-    # import uuid
+    import uuid
 
-    # entry1 = {
-    #     "id": "Andersen_" + str(uuid.uuid4()),
-    #     "Customer ID": "CD700",
-    #     "Service Agent ID": "AG10003",
-    #     "VIP": "N",
-    #     "Location": "Shrajah",
-    #     "Department": "Health",
-    #     "Language": "Tagalog",
-    #     "Gender": "M",
-    #     "Age": "30",
-    #     "Complaint": "N",
-    #     "Key Phrase": "",
-    #     "Cu_Sentiments": "",
-    #     "AG_Sentiments": "",
-    # }
+    entry1 = {
+        "id": "Andersen_" + str(uuid.uuid4()),
+        "Customer ID": "CD700",
+        "Service Agent ID": "AG10003",
+        "VIP": "N",
+        "Location": "Shrajah",
+        "Department": "Health",
+        "Language": "Tagalog",
+        "Gender": "M",
+        "Age": "30",
+        "Complaint": "N",
+        "Key Phrase": "",
+        "Cu_Sentiments": "",
+        "AG_Sentiments": "",
+    }
 
-    # entry2 = {
-    #     "id": "Andersen2_" + str(uuid.uuid4()),
-    #     "Customer ID": "CD701",
-    #     "Service Agent ID": "AG10002",
-    #     "VIP": "Y",
-    #     "Location": "Dubai",
-    #     "Department": "Health",
-    #     "Language": "English",
-    #     "Gender": "M",
-    #     "Age": "25",
-    #     "Complaint": "N",
-    #     "Key Phrase": "affordable,heartfelt,happiness",
-    #     "Cu_Sentiments": "8",
-    #     "AG_Sentiments": "9",
-    # }
+    entry2 = {
+        "id": "Andersen2_" + str(uuid.uuid4()),
+        "Customer ID": "CD701",
+        "Service Agent ID": "AG10002",
+        "VIP": "Y",
+        "Location": "Dubai",
+        "Department": "Health",
+        "Language": "English",
+        "Gender": "M",
+        "Age": "25",
+        "Complaint": "N",
+        "Key Phrase": "affordable,heartfelt,happiness",
+        "Cu_Sentiments": "8",
+        "AG_Sentiments": "9",
+    }
 
-    # from azure.cosmos import exceptions, CosmosClient, PartitionKey
+    from azure.cosmos import exceptions, CosmosClient, PartitionKey
 
-    # # Initialize the Cosmos client
-    # endpoint = "https://cosmostrials.documents.azure.com:443/"
-    # key = "sC22JndQuhxLXjSzTwtsnDTjPNR8tqI6aEpXnc68nVn1TjGN9IJa9zfTjuxf6ATx0GOWnKwWUSon7M8JFp92Hw=="
+    # Initialize the Cosmos client
+    endpoint = "https://cosmostrials.documents.azure.com:443/"
+    key = "sC22JndQuhxLXjSzTwtsnDTjPNR8tqI6aEpXnc68nVn1TjGN9IJa9zfTjuxf6ATx0GOWnKwWUSon7M8JFp92Hw=="
 
-    # # <create_cosmos_client>
-    # client = CosmosClient(endpoint, key)
-    # # </create_cosmos_client>
+    # <create_cosmos_client>
+    client = CosmosClient(endpoint, key)
+    # </create_cosmos_client>
 
-    # # Create a database
-    # # <create_database_if_not_exists>
-    # database_name = "Details"
-    # database = client.create_database_if_not_exists(id=database_name)
-    # # </create_database_if_not_exists>
+    # Create a database
+    # <create_database_if_not_exists>
+    database_name = "Details"
+    database = client.create_database_if_not_exists(id=database_name)
+    # </create_database_if_not_exists>
 
-    # # Create a container
-    # # Using a good partition key improves the performance of database operations.
-    # # <create_container_if_not_exists>
-    # container_name = "Details5"
-    # container = database.create_container_if_not_exists(
-    #     id=container_name,
-    #     partition_key=PartitionKey(path="/Location"),
-    #     offer_throughput=400,
-    # )
-    # # </create_container_if_not_exists>
+    # Create a container
+    # Using a good partition key improves the performance of database operations.
+    # <create_container_if_not_exists>
+    container_name = "Details5"
+    container = database.create_container_if_not_exists(
+        id=container_name,
+        partition_key=PartitionKey(path="/Location"),
+        offer_throughput=400,
+    )
+    # </create_container_if_not_exists>
 
-    # # Add items to the container
-    # family_items_to_create = [entry1, entry2]
-    # # family_items_to_create = b
-    # # <create_item>
-    # for family_item in family_items_to_create:
-    #     container.create_item(body=family_item)
-    # # </create_item>
+    # Add items to the container
+    family_items_to_create = [entry1, entry2]
+    # family_items_to_create = b
+    # <create_item>
+    for family_item in family_items_to_create:
+        container.create_item(body=family_item)
+    # </create_item>
 
-    # # Read items (key value lookups by partition key and id, aka point reads)
-    # # <read_item>
+    # Read items (key value lookups by partition key and id, aka point reads)
+    # <read_item>
 
-    # msg("Database created", "Data entered")
-    # for family in family_items_to_create:
-    #     item_response = container.read_item(
-    #         item=family["id"], partition_key=family["Location"]
-    #     )
-    #     request_charge = container.client_connection.last_response_headers[
-    #         "x-ms-request-charge"
-    #     ]
-    #     print(
-    #         "Read item with id {0}. Operation consumed {1} request units".format(
-    #             item_response["id"], (request_charge)
-    #         )
-    #     )
-    # # </read_item>
+    msg("Database created", "Data entered")
+    for family in family_items_to_create:
+        item_response = container.read_item(
+            item=family["id"], partition_key=family["Location"]
+        )
+        request_charge = container.client_connection.last_response_headers[
+            "x-ms-request-charge"
+        ]
+        print(
+            "Read item with id {0}. Operation consumed {1} request units".format(
+                item_response["id"], (request_charge)
+            )
+        )
+    # </read_item>
 
-    # # Query these items using the SQL query syntax.
-    # # Specifying the partition key value in the query allows Cosmos DB to retrieve data only from the relevant partitions, which improves performance
-    # # <query_items>
-    # query = "SELECT * FROM c WHERE c.Location IN ('Shrajah', 'Dubai')"
+    # Query these items using the SQL query syntax.
+    # Specifying the partition key value in the query allows Cosmos DB to retrieve data only from the relevant partitions, which improves performance
+    # <query_items>
+    query = "SELECT * FROM c WHERE c.Location IN ('Shrajah', 'Dubai')"
 
-    # items = list(container.query_items(query=query, enable_cross_partition_query=True))
+    items = list(container.query_items(query=query, enable_cross_partition_query=True))
 
-    # request_charge = container.client_connection.last_response_headers[
-    #     "x-ms-request-charge"
-    # ]
+    request_charge = container.client_connection.last_response_headers[
+        "x-ms-request-charge"
+    ]
 
-    # print(
-    #     "Query returned {0} items. Operation consumed {1} request units".format(
-    #         len(items), request_charge
-    #     )
-    # )
+    print(
+        "Query returned {0} items. Operation consumed {1} request units".format(
+            len(items), request_charge
+        )
+    )
 
 
 def jsondumper(name, data):
@@ -377,27 +377,23 @@ def database():
 def databasedata():
     
     video_data =isjson_available("videoInsights.json")
-    # "raw_data": raw_data,
-    #         "Customer Sentiments": video_data["Customer Sentiments"],
-    #         "Agent Sentiments": video_data["Agent Sentiments"],
-    #         "Language": video_data["Language"],
-    #         "keywords": video_data["keywords"],
-
+    raw_data = isjson_available("form.json")
+      
     return jsonify(
         [
             {
-                "CustomerID": "CD701",
-                "Service Agent ID": "AG10002",
+                "CustomerID": raw_data["TID"],
+                "Service Agent ID": raw_data["AgentID"],
                 "VIP": "Y",
-                "Location": "Dubai",
+                "Location": raw_data["Location"],
                 "Department": "Health",
-                "Language": "English",
-                "Gender": "M",
-                "Age": "35",
-                "Complaint": "N",
-                "Key Phrase": "affordable,heartfelt,happiness",
-                "Cu_Sentiments": "8",
-                "AG_Sentiments": "9",
+                "Language": video_data["Language"],
+                "Gender": raw_data["Gender"],
+                "Age": raw_data["Age"],
+                "Complaint":raw_data["Complaint"],
+                "Key Phrases": video_data["keywords"],
+                "Customer Sentiments": video_data["Customer Sentiments"],
+                "Agent Sentiments": video_data["Agent Sentiments"],
             }
         ]
     )
