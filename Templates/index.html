@@ -2,131 +2,97 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
     <link rel="stylesheet" href="assets/css/iframe-1.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 300px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-        <div class="container">
-            <div class="row" style="padding-top: 0px;">
-                <div class="col">
-                    <div style="padding-left: 21px;"><input type="file" accept="image/*" name="image" id="file"
-                            onchange="loadFile(event)">
-                        <p style=" display: block;
-  
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6ec4, #7873f5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform .2s ease-out;" for="file">Upload Forms</p>
+        <div class="container"><a class="navbar-brand logo" href="#"></a>
+        </div>
 
-
-
-
-                        <script>
-                            var loadFile = function (event) {
-                                var image = document.getElementById('output');
-                                image.src = URL.createObjectURL(event.target.files[0]);
-                            };
-                        </script>
-
-                    </div>
-                </div>
-                <div class="col" style="padding-left: 21px;">
-                    <div style="padding-left: 21;">
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                        <script>
-                            $(document).on("change", ".file_multi_video", function (evt) {
-                                var $source = $('#video_here');
-                                $source[0].src = URL.createObjectURL(this.files[0]);
-                                $source.parent()[0].load();
-                            });
-                        </script>
-                        <input type="file" name="file[]" class="file_multi_video" accept="video/*">
-                        <p style=" display: block;
-  
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6ec4, #7873f5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform .2s ease-out;" for="file">Upload Video</p>
-
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div style="padding-left: 21px;"><input type="file">
-                        <p style=" display: block;
-  
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6ec4, #7873f5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform .2s ease-out;" for="file">Upload CSV</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div style="padding-left: 21px;padding-top: 29px;"><a href="next"><button class="btn btn-primary"
-                                type="submit" name="trigger"
-                                style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Trigger</button></a>
-                    </div>
-                </div>
+        <div class="col">
+            <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" onclick="tableFromJson()"
+                    style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button>
             </div>
+            <input type='button' onclick='tableFromJson()' value='Create Table from JSON data' />
+
         </div>
     </nav>
-    <section>
+
+    <section style="align: center;padding-top: 100px;padding-bottom: 100ppx;">
         <div class="container text-center" style="text-align: center;">
-            <div class="row" style="padding-top: 177px;">
-                <div class="col-md-4 col-xxl-6">
-                    <div>
-                        <p><img src="assets/img/noimage.png" id="output" width="100%" /></p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div><video width="100%" controls>
-                            <source src="mov_bbb.mp4" id="video_here">
-                            Your browser does not support HTML5 video.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
-    <footer class="page-footer" style="padding-top: 389px;">
-        <div class="container">
-            <div class="social-icons"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
-                        class="icon ion-social-instagram-outline"></i></a><a href="#"><i
-                        class="icon ion-social-twitter"></i></a></div>
+
+    <div class="row" id="row1">
+        <div class="column" id="raw" style="background-color:#aaa;">
         </div>
-    </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+        <div class="column" id="showData" style="background-color:#bbb;">
+        </div>
+    </div>
 </body>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+
+    function tableFromJson() {
+        myBooks = { "key": "1", "efghsf": "shfgjy" }
+        // the json data. (you can change the values for output.)
+        var table = document.createElement("table");
+        table.className = "styled-table"
+        req = $.ajax({
+            url: '/formdata',
+            type: "POST",
+
+        });
+
+
+        req.done(function (data) {
+
+            var myBooks = data;
+            for (var key in myBooks) {
+                console.log('data', key);
+                var tr = table.insertRow(-1);                   // table row.
+                var th = document.createElement("th");      // table header.
+                th.innerHTML = key;
+                tr.appendChild(th);
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = myBooks[key];
+            }
+        });
+
+
+        var divShowData = document.getElementById('showData');
+        divShowData.innerHTML = "";
+        divShowData.appendChild(table);
+    }
+</script>
+
+
 
 </html>

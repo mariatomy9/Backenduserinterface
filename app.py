@@ -21,10 +21,10 @@ def index():
 def form():
     return render_template("form.html")
 
-@app.route("/formdata")
+@app.route("/formdata",methods=['POST'])
 def formdata():
-    raw_data = isjson_available()
-    parsed = parsed_form(raw_data)
+    # raw_data = isjson_available()
+    # parsed = parsed_form(raw_data)
     
     return jsonify({'Additional Feedback': 'Excellant Pleasant nalise Also giving instructions for each of the services.',
  'Age': None,
