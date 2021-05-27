@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Brand</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="/assets/css/iframe-1.css">
+    <link rel="stylesheet" href="assets/css/iframe-1.css">
     <style type="text/css">
         html {
             overflow: auto;
         }
-
+          
         html,
         body,
         div,
@@ -23,7 +23,7 @@
             height: 100%;
             border: none;
         }
-
+          
         iframe {
             display: block;
             width: 100%;
@@ -36,21 +36,45 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="#"></a>
-
+ 
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Form</button></div>
         </div>
-    </nav>
-    <section style="text-align: center;padding-top: 100px;padding-bottom: 100ppx;">
-        <div class="container text-center" style="text-align: center;">
-            <div style="padding-top: 20px">
-                <iframe width="1140" height="541.25"
-                    src="https://app.powerbi.com/reportEmbed?reportId=bdefa7a7-59fa-4daa-a697-a53747f3799c&autoAuth=true&ctid=9e985fe9-27f3-437d-a20c-6b660c4254c0&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWUtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D"
-                    frameborder="0" allowFullScreen="true"></iframe>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Video</button></div>
+        </div>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Database</button></div>
+        </div>
+        <div class="col">
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" type="submit" style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">PowerBI</button></div>
+        </div>
+     
+          <div class="col">
             </div>
+    <div class="col"> 
+          <div style="padding-left: 21px;padding-top: 29px;"><button class="btn btn-primary" onclick="tableFromJson()"
+              style="color: var(--bs-white);background: var(--bs-indigo);width: 200px;height: 50px;">Refresh</button></div>
+          </div>
+     
+     
+      </nav>
+   
+    <section style="align: center;padding-top: 100px;padding-bottom: 100ppx;">
+        <div class="container text-center" style="text-align: center;">
+            <div style="padding-top: 20px" >
+              <iframe width=frameborder="0" 
+            marginheight="0" 
+            marginwidth="0" 
+            width="100%" 
+            height="100%" 
+            scrolling="auto" src="https://app.powerbi.com/reportEmbed?reportId=13d2936d-b9c4-436e-8a19-420bbf6d599e&autoAuth=true&ctid=9e985fe9-27f3-437d-a20c-6b660c4254c0&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWUtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
     </section>
-    <script src="/assets/bootstrap/css/bootstrap.min.css"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-    <script src="/assets/js/theme.js"></script>
+    <script src="assets/js/theme.js"></script>
 </body>
 
 </html>
+ 
